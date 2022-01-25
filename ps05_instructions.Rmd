@@ -1,0 +1,77 @@
+---
+title: "Teamwork on Github"
+author: "Math 271"
+date: "Spring 2022"
+output: 
+  html_document:
+    css: lab.css
+    keep_md: true
+    theme: lumen
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+## Accept group assignment on Github
+
+- Pair off into groups, choose a team captain. 
+- Captains accept the group assignment first and create new teams.
+- Other member accept assignment and join team.
+- You now have a shared repository on github.
+
+## Solution document setup
+
+- Clone the shared repository into RStudio
+- _Create a new branch_, give it your first name or something else suitable.
+
+![](figure/new-branch.png)
+
+- Once on your new branch, each member create a solution `.Rmd` file named `yourname_solution.Rmd`. (Put your own name in there.)
+- Commit your new file, and push your new file and branch to Github. You should never commit or push to the main branch during this assignment. Only to your personal branch.
+- Check github for your new branch, as well as the branch of your teammate.
+
+For this assignment, you will work within your own branch and answer independently within your document, pushing your solutions to github. When finished, you will request a review of your branch code from your teammate. Once they have approved the code, you will merge it into the main branch. When finished, your main branch should have both of your solution files for me to review.
+
+
+## Exercises with joins
+
+Using the data in `nycflights13` try to answer the following questions
+
+1. For each row in `flights`, compute the "available seat-miles", which is the product of the `distance` flown and the number of `seats` on the plane. This will involve using `inner_join` with the `tailnum` to look up information about the plane in the `planes` data set. Store the computed value in a column called `seat_miles`, and store the new data set in an object named `flights_sm`. 
+
+
+:::{.license}
+Be careful that you set up the join correctly. You should still have hundreds of thousands of flight records after the join.
+:::
+
+2. Explain the difference between using `inner_join` and using `left_join`. Which one produces more rows, and what is left out of the smaller result?
+
+3. Find one flight with the maximum seat-miles for each airline. Produce a table in descending order by seat miles. Join the full airline name from the `airlines` data set. Your table should have columns `carrier`, `origin`, `dest`, `seat_miles`, and `name`. Store your table in `sm_max` and print it out.
+
+4. Produce a sorted list (descending) of the total available `seat_miles` to each `dest` across all airlines. Join in the airport information for the destination airport from the `airports` data. Store the resulting table in `sm_dest` and print it out.
+
+5. (Hard) The `arr_time` column is an integer encoding in "HMM" or "HHMM" the arrival time of the flight in the _local time zone of the destination airport_, which is given in the `airports` data set. Mutate this arrival time into a proper date-time object in the UTC time zone. Show the code that does this and explain in text how it works. (Good luck, and enjoy the challenge!)
+
+
+## Submitting your assignment
+
+- Commit your changes to your new branch.
+- Push your commits to Github.
+- Open a pull request to merge your branch into the main branch.
+- Request your teammate to review the code in your pull request.
+- Respond to your teammate's code review request.
+- When you're satisfied with the code review results, merge your branch into the main branch.
+- When both branches have been merged with main, request @grady to review all of the work in the feedback pull request.
+
+## Additional Activities 
+
+This is an interactive "game" tutorial that teaches some of the core git skills.
+
+- https://learngitbranching.js.org/
+
+Do the Introduction Sequence levels `intro1` through `intro4`, the Ramping Up levels, particularly `rampup4`, and from the Remote tab all Push & Pull lessons, `remote1` through `remote8`.
